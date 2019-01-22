@@ -34,7 +34,7 @@ func SendEmail(message structs.Message) error {
 				},
 			},
 			Subject: &ses.Content{
-				Data: aws.String("New Contact Message - " + message.Subject),
+				Data: aws.String("Website Form Message - " + message.Subject),
 			},
 		},
 		Destination: &ses.Destination{

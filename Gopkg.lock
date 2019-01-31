@@ -2,10 +2,9 @@
 
 
 [[projects]]
-  digest = "1:3c1b2a3b4f61355c883f878b5754bc27c0d159151cf84fbe21913756d74f539c"
+  digest = "1:1c44f05197d518973df6d9371d4783035dd07ec1cb2049a6e799a59b2cc429b4"
   name = "github.com/aws/aws-lambda-go"
   packages = [
-    "events",
     "lambda",
     "lambda/messages",
     "lambdacontext",
@@ -64,7 +63,6 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
-    "github.com/aws/aws-lambda-go/events",
     "github.com/aws/aws-lambda-go/lambda",
     "github.com/aws/aws-sdk-go/aws",
     "github.com/aws/aws-sdk-go/aws/session",

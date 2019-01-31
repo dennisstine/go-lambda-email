@@ -1,27 +1,26 @@
 package responses
 
 import (
-	"github.com/aws/aws-lambda-go/events"
 	"net/http"
 )
 
 var header = map[string]string{"Content-Type": "application/json"}
 
-// Return a success (200) to the client
-func SuccessResponse() (events.APIGatewayProxyResponse, error) {
+// Return a success (200) to the client with nil error
+func SuccessResponse() (LambdaResponse, error) {
 
-	return events.APIGatewayProxyResponse{
+	return LambdaResponse{
 		Headers:    header,
 		StatusCode: http.StatusOK,
 	}, nil
 }
 
-// Return an error (e.g. 400, 500) to the client with the error message
-func ErrorResponse(err error, code int) (events.APIGatewayProxyResponse, error) {
+// Return an error and status code (e.g. 400, 500) to the client
+func ErrorResponse(code int, err error) (LambdaResponse, error) {
 
-	return events.APIGatewayProxyResponse{
+	return LambdaResponse{
 		Headers:    header,
 		StatusCode: code,
-		Body:       err.Error(),
-	}, nil
+		Body:       http.StatusText(code),
+	}, err
 }

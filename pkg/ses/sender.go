@@ -9,12 +9,14 @@ import (
 )
 
 var toEmail string
+var fromEmail string
 var emailClient *ses.SES
 
 // Retrieve ENV variables from AWS config and establish the SES client
 func init() {
 
 	toEmail = os.Getenv("TO_EMAIL")
+	fromEmail = os.Getenv("FROM_EMAIL")
 
 	sess, _ := session.NewSession(&aws.Config{
 		Region: aws.String(os.Getenv("AWS_DATACENTER"))},
@@ -40,7 +42,7 @@ func SendEmail(message structs.Message) error {
 		Destination: &ses.Destination{
 			ToAddresses: []*string{aws.String(toEmail)},
 		},
-		Source: aws.String(toEmail),
+		Source: aws.String(fromEmail),
 	}
 
 	_, err := emailClient.SendEmail(emailParams)
